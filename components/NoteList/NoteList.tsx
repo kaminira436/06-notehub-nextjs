@@ -6,7 +6,7 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 
-import { deleteNote } from "../../lib/api/api";
+import { deleteNote } from "../../lib/api";
 import type { Note } from "../../types/note";
 
 import css from "./NoteList.module.css";
