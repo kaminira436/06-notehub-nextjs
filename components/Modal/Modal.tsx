@@ -1,16 +1,12 @@
 "use client";
 
-import {
-  useEffect,
-  type ReactNode,
-  type MouseEvent,
-} from "react";
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
 
 import css from "./Modal.module.css";
 
 interface ModalProps {
-  children: ReactNode;
+  children: React.ReactNode;
   onClose: () => void;
 }
 
@@ -27,21 +23,27 @@ export default function Modal({
       }
     };
 
-    window.addEventListener(
+    document.addEventListener(
       "keydown",
       handleKeyDown
     );
 
+    // Забороняємо прокрутку сторінки
+    document.body.style.overflow = "hidden";
+
     return () => {
-      window.removeEventListener(
+      document.removeEventListener(
         "keydown",
         handleKeyDown
       );
+
+      // Повертаємо прокрутку
+      document.body.style.overflow = "";
     };
   }, [onClose]);
 
   const handleBackdropClick = (
-    event: MouseEvent<HTMLDivElement>
+    event: React.MouseEvent<HTMLDivElement>
   ) => {
     if (event.target === event.currentTarget) {
       onClose();
@@ -51,8 +53,6 @@ export default function Modal({
   return createPortal(
     <div
       className={css.backdrop}
-      role="dialog"
-      aria-modal="true"
       onClick={handleBackdropClick}
     >
       <div className={css.modal}>
