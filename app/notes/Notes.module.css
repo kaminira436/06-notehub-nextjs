@@ -1,0 +1,16 @@
+.main {
+    padding: 24px;
+}
+
+.toolbar {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.button {
+    padding: 8px 16px;
+    cursor: pointer;
+}
